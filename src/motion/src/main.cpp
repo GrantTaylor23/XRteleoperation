@@ -1,0 +1,53 @@
+#include "movement.h"
+
+int main(int argc, char **argv){
+
+    
+    //Initialize ROS 2
+    rclcpp::init(argc, argv);
+
+    // Create an instance of motion_node
+    auto motion_node = std::make_shared<Motion>();
+
+    // // Create an instance of the Quadcopter node
+    // auto quadcopter_node = std::make_shared<Quadcopter>();
+    // // Create an instance of MissionNode
+    // auto mission_node = std::make_shared<MissionNode>(quadcopter_node);
+
+    // Create an executor
+    //rclcpp::executors::MultiThreadedExecutor executor;
+    rclcpp::executors::SingleThreadedExecutor executor;
+
+    // Add nodes to the executor
+    executor.add_node(motion_node);
+    //executor.add_node(pcd_read_node);
+
+    // Spin in background thread so callbacks work during init
+    std::thread spin_thread([&executor]() { executor.spin(); });
+
+
+    // Wait for MoveIt to fully start
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    // // Initialize MoveIt after node is fully created
+    // motion_node->initMoveIt();
+
+    try {
+        motion_node->initMoveIt();
+    } catch (const std::exception &e) {
+        RCLCPP_ERROR(rclcpp::get_logger("main"), "initMoveIt failed: %s", e.what());
+        executor.cancel();
+        spin_thread.join();
+        rclcpp::shutdown();
+        return 1;
+    }
+
+    // Spin the executor
+    //executor.spin();
+
+    spin_thread.join();
+    // Shutdown ROS 2
+    rclcpp::shutdown();
+
+}
+
