@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &11223503328540423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5818057092505472530}
+  - component: {fileID: 1684248358286084950}
+  - component: {fileID: 7678620623340677147}
+  - component: {fileID: 8158215226731220749}
+  - component: {fileID: 6585265156108878275}
+  m_Layer: 0
+  m_Name: ROS Connection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5818057092505472530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11223503328540423}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20292.229, y: 0.00038, z: 18235.21}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684248358286084950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11223503328540423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acef0b79454c9b4dae3f8139bc4ba77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Robotics.ROSTCPConnector::Unity.Robotics.ROSTCPConnector.ROSConnection
+  m_RosIPAddress: 172.20.10.6
+  m_RosPort: 10000
+  m_ConnectOnStart: 1
+  m_KeepaliveTime: 1
+  m_NetworkTimeoutSeconds: 2
+  m_SleepTimeSeconds: 0.01
+  m_ShowHUD: 1
+  m_TFTopics:
+  - /tf
+  listenForTFMessages: 1
+--- !u!114 &7678620623340677147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11223503328540423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ed27818313f7a99a1b6d73562b5835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JointPublisher
+  jointStatesTopic: /g8_joint_states
+  joint1: {fileID: 0}
+  joint2: {fileID: 0}
+  joint3: {fileID: 0}
+  joint4: {fileID: 0}
+  joint5: {fileID: 0}
+  joint6: {fileID: 0}
+--- !u!114 &8158215226731220749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11223503328540423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff01887c303db6448952e24f6b00089e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UR3eIKSolver
+  link1: {fileID: 0}
+  link2: {fileID: 0}
+  link3: {fileID: 0}
+  link4: {fileID: 0}
+  link5: {fileID: 0}
+  link6: {fileID: 0}
+  eeTarget: {fileID: 0}
+  eeTip: {fileID: 0}
+  learningRate: 10
+  distanceThreshold: 0.01
+  deltaAngle: 0.01
+  maxIterations: 10
+  restPoseBias: 0.0005
+  joint1Limits: {x: -360, y: 360}
+  joint2Limits: {x: -180, y: 180}
+  joint3Limits: {x: -360, y: 360}
+  joint4Limits: {x: -360, y: 360}
+  joint5Limits: {x: -360, y: 360}
+  joint6Limits: {x: -360, y: 360}
+  restAngle1: 0
+  restAngle2: 180
+  restAngle3: 90
+  restAngle4: 90
+  restAngle5: -90
+  restAngle6: 0
+--- !u!114 &6585265156108878275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11223503328540423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb61516ab544314891ae76ec85808cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRButtonPublisher
+  topicName: /g8_gripper_cmd
